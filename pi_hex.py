@@ -50,25 +50,29 @@ def BBP(d, n):
     )[2:]  # Remove 0x prefix
 
 
-# Compute n'th digit in base 16
+# Compute digits in base 16
 if __name__ == "__main__":
     PAUSE_MIN_TIME = 0.05
 
-    n = 0
-    print("π (in hex) = 3.", end="", flush=True)
+    n = 1
+    prefix = "π = 3."
 
+    for key in prefix:
+        print(key, end='', flush=True)
+        sleep(PAUSE_MIN_TIME)
+
+    # Start printing
     try:
         while True:
-            now = time()
+            timestamp = time()
+            trace = BBP(n, 1)
 
-            n += 1
-            nth = BBP(n, 1)
-
-            delta = time() - now
+            delta = time() - timestamp
             if delta < PAUSE_MIN_TIME:
                 sleep(PAUSE_MIN_TIME - delta)
 
-            print(nth, end='', flush=True)
+            print(trace, end='', flush=True)
+            n += 1
 
     except KeyboardInterrupt:
         # Delete ^C character and print ellipsis
