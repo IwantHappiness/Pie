@@ -156,7 +156,6 @@ def sum_binomial_mod(n, k):
 
 def digits_of_fraction(n, a, b):
     initialize_modulo(b)
-
     power = pow_mod(10, n)
     c = mul_mod(power, a)
 
@@ -185,9 +184,9 @@ def digits_of_pi(n):
     )
 
     N += N % 2  # N should be even
-    mmax = M * N + N
+    m_max = M * N + N
 
-    x = digits_of_series(n, mmax)
+    x = digits_of_series(n, m_max)
 
     for k in range(N):
         m = 2 * M * N + 2 * k + 1
@@ -224,24 +223,24 @@ if __name__ == "__main__":
     PAUSE_MIN_TIME = 0.05
 
     # PDC doesn't works before 51 digit
+    n = 51
     prefix = "π = 3.141592653589793238462643383279502884197169399375105"
-
-    for key in prefix:
-        print(key, end='', flush=True)
-        sleep(PAUSE_MIN_TIME)
-
-    n = 51  # Decimal digit position of pi
-    trace = PDC(n)
-
-    def trace_join(prev: str, new: str):
-        for s in range(len(new)):
-            if (pos := prev.find(new[:len(new) - s], -10)) != -1:
-                prev = prev[:pos] + new
-
-                return prev
 
     # Start printing
     try:
+        for key in prefix:
+            print(key, end='', flush=True)
+            sleep(PAUSE_MIN_TIME)
+
+        trace = PDC(n)
+
+        def trace_join(prev: str, new: str):
+            for s in range(len(new)):
+                if (pos := prev.find(new[:len(new) - s], -10)) != -1:
+                    prev = prev[:pos] + new
+
+                    return prev
+
         while True:
             timestamp = time()
 

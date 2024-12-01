@@ -57,12 +57,12 @@ if __name__ == "__main__":
     n = 1
     prefix = "π = 3."
 
-    for key in prefix:
-        print(key, end='', flush=True)
-        sleep(PAUSE_MIN_TIME)
-
     # Start printing
     try:
+        for key in prefix:
+            print(key, end='', flush=True)
+            sleep(PAUSE_MIN_TIME)
+
         while True:
             timestamp = time()
             trace = BBP(n, 1)

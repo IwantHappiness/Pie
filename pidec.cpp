@@ -4,6 +4,8 @@
 #include <math.h>
 #include <time.h>
 
+// Formatted original pidec code from here: http://numbers.computation.free.fr/Constants/Algorithms/pidec.cpp
+
 // longint should be a 64-bit long integer
 // it could be a double floating point type, provided
 // adaptations of mulMod and sumMulMod functions are done
@@ -238,14 +240,13 @@ double digitsOfPi(long n) {
     long N = 1 + (long) ((n + 15.) * log(10.) / (1. + log(2. * M)));  // n >= N
 
     N += N % 2;  // N should be even
-
     longint mMax = (longint) M * (longint) N + (longint) N;
 
     printf("Parameters: M = %ld, N = %ld, M*N + M = %.0lf\n", M, N, (double) mMax);
 
-    double st = myTime();
+    double timestamp = myTime();
     double x = digitsOfSeries(n, mMax);
-    printf("Series time: %.2lf\n", myTime() - st);
+    printf("Series time: %.2lf\n", myTime() - timestamp);
 
     for (long k = 0.; k < N; k++) {
         longint m = (longint) 2 * (longint) M * (longint) N + (longint) 2 * (longint) k + 1;
