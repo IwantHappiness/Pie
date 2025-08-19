@@ -76,9 +76,10 @@ longint invMod(longint a) {
 
     longint gcd = extendedGcd(a, A);
 
-    if (gcd != 1)
+    if (gcd != 1) {
         printf("pb, gcd should be 1\n");
         exit(1);
+    }
 
     return A;
 }
